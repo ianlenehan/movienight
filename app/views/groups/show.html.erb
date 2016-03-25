@@ -1,2 +1,16 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+<h1><%= @group.name %></h1>
+
+<h3>List of Members:</h3>
+
+<% @group.users.each do |user| %>
+<ul>
+  <li><%= user.name_first %></li>
+</ul>
+<% end %>
+
+<h3>List of Events: </h3>
+<% @group.events.each do |event| %>
+<ul>
+  <li><%= event.imdb_id %> at <%= event.location %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
+</ul>
+<% end %>

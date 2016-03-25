@@ -1,0 +1,13 @@
+<%= form_for @group do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :image %>
+    <%= f.url_field :image %>
+  </fieldset>
+
+  <label></label>  <%= f.submit %>
+<% end %>

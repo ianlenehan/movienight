@@ -1,2 +1,4 @@
-<h1>Groups#index</h1>
-<p>Find me in app/views/groups/index.html.erb</p>
+<h1>Groups index</h1>
+<% @groups.each do |group| %>
+<p><%= link_to group.name, group_path(group.id) %></p>
+<% end %>

@@ -12,6 +12,7 @@
 #  group_id        :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  group_admin     :boolean
 #
 
 class User < ActiveRecord::Base
