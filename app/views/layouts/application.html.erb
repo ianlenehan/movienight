@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movienight</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+    Hello <%= @current_user.name_first %>
+  <%= link_to 'Home', root_path %>
+  <% if @current_user.present? %>
+    <% if @current_user.admin? %>
+      <%= link_to "All Users", users_path %>
+    <% end %>
+    <%= link_to "My Profile", user_path(@current_user) %>
+    <%= link_to "Logout #{ @current_user.email }", login_path, :method => :delete %>
+  <% else %>
+    <%= link_to 'Sign up', signup_path %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+<h1>List of all Users.</h1>
+<% @users.each do |user| %>
+<p><%= user.name_first %> <%= link_to(user.name_last, user_path(user.id)) %> since <%= user.created_at %></p>
+<% end %>
