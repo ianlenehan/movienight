@@ -10,9 +10,12 @@
 #
 
 Rails.application.routes.draw do
+
 root :to => 'pages#welcome'
 
 get '/users/edit' => 'users#edit'
+# get '/group/edit' => 'groups#edit'
+get '/groups/:id/edit' => 'groups#edit', :as => 'group_edit'
 
 resources :users, :only  => [:new, :create, :index, :update, :show]
 resources :groups, :only => [:new, :create, :index, :update, :show]

@@ -14,6 +14,7 @@
   Hello <%= @current_user.name_first %>
     <% if @current_user.admin? %>
       <%= link_to "All Users", users_path %>
+      <%= link_to "All Groups", groups_path %>
     <% end %>
       <% if @current_user.group_id == nil %>
         <%= link_to "Create Group", new_group_path %>
@@ -26,6 +27,10 @@
     <%= link_to 'Login', login_path %>
   <% end %>
 </nav>
+
+<% if @current_user.present? && !@current_user.group.nil? %>
+<h1><%= @current_user.group.name %></h1>
+<% end %>
 
 <%= yield %>
 

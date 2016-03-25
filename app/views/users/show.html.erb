@@ -1,5 +1,6 @@
 <h1><%= @user.name_first %> <%= @user.name_last %></h1>
-<img class = "feature" src="<%= @user.image %>" alt="<%= @user.name_first %>">
+<p>Member of: <%= @user.group.name %></p>
+<img class = "feature" src="<%= @user.image %>" alt="<%= @user.name_first %> photo goes here">
 <h3>Events Attended</h3>
 <% @user.events.each do |event| %>
 <ul>

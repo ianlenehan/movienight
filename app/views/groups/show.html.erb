@@ -1,5 +1,7 @@
 <h1><%= @group.name %></h1>
 
+<%= image_tag(@group.image, :class => 'feature') %>
+
 <h3>List of Members:</h3>
 
 <% @group.users.each do |user| %>
@@ -14,3 +16,5 @@
   <li><%= event.imdb_id %> at <%= event.location %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
 </ul>
 <% end %>
+
+<%= link_to "Edit Group", group_edit_path %>
