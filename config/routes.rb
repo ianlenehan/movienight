@@ -17,8 +17,13 @@ get '/users/edit' => 'users#edit'
 # get '/group/edit' => 'groups#edit'
 get '/groups/:id/edit' => 'groups#edit', :as => 'group_edit'
 
+get '/events/:id/search' => 'events#search'
+get '/details/:id/:imdbid' => 'events#details'
+get '/details/:id/:imdbid/update_movie' => 'events#update_movie'
+
 resources :users, :only  => [:new, :create, :index, :update, :show]
 resources :groups, :only => [:new, :create, :index, :update, :show]
+resources :events, :only => [:show, :new, :create, :index, :update, :search]
 
 get '/signup' => 'users#new'
 
