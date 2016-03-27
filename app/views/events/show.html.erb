@@ -4,8 +4,17 @@
 <% if @event.imdb_id %>
 <p><%= @movie["Title"] %></p>
 <p><%= image_tag @movie["Poster"] %></p>
+
+<h3>Ratings</h3>
+<% @ratings.each do |rating| %>
+<ul>
+  <li>"<%= rating.rating_score %>" - <%= rating.user.name_first %> <%= rating.user.name_last %></li>
+</ul>
 <% end %>
 
+<% end %>
+
+<p>Add or update film</p>
 <form action="/events/<%= @event.id %>/search">
   <input type="text" name="title">
   <input type="submit">
@@ -15,6 +24,15 @@
 
 <ul>
   <% @event.users.each do |user| %>
-  <li><%= user.name_first %></li>
+  <li><%= user.name_first %> </li>
   <% end %>
 </ul>
+
+<% if @event.users.where(:id => @current_user.id).any? %>
+<p>You are attending.</p>
+<p><%= button_to 'Not Attending', event_not_attending_path %></p>
+<% else %>
+<p><%= button_to 'Attending', event_attending_path %></p>
+<% end %>
+<p><%= link_to 'Edit Event', edit_event_path(@event) %></p>
+<p><%= link_to 'Delete Event', @event, :method => :delete %></p>

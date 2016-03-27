@@ -13,6 +13,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  group_admin     :boolean
+#  group_member    :boolean
 #
 
 class User < ActiveRecord::Base

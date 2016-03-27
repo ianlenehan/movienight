@@ -1,0 +1,23 @@
+<%= form_for @event do |f| %>
+  <fieldset>
+    <%= f.label :location %>
+    <%= f.text_field :location, :required => 'true' %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :date %>
+    <%= f.date_field :date, :required => 'true' %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :time %>
+    <%= f.text_field :time %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :details %>
+    <%= f.text_field :details %>
+  </fieldset>
+
+  <label></label>  <%= f.submit %>
+<% end %>

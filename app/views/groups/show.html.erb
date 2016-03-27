@@ -1,20 +1,49 @@
 <h1><%= @group.name %></h1>
 
 <%= image_tag(@group.image, :class => 'feature') %>
+<% if @current_user.group_id != @group.id %>
+<p><%= link_to 'Request to Join', group_join_path %></p>
+<% elsif @current_user.group_id == @group.id && @current_user.group_member == false %>
+<p>Your request to join this group is pending.</p>
+<% elsif @current_user.group_id == @group.id && @current_user.group_member == nil %>
+<p>Sorry, your request to join this group has been denied.</p>
+<% end %>
+
+<% if @current_user.group_id == @group.id && @current_user.group_member == true %>
 
 <h3>List of Members:</h3>
-
 <% @group.users.each do |user| %>
+<% if user.group_member == true %>
 <ul>
-  <li><%= user.name_first %></li>
+  <li><%= user.name_first %> <%= user.name_last %></li>
 </ul>
 <% end %>
+<% end %>
+
+<% if @current_user.present? && @current_user.group_admin? %>
+<h3>Pending Memberships:</h3>
+<% @group.users.each do |user| %>
+<% if user.group_member == false %>
+<ul>
+  <li><%= user.name_first %> <%= user.name_last %> (<%= link_to 'Approve', "/groups/approve/#{user.id}" %> / <%= link_to 'Reject', "/groups/reject/#{user.id}" %>)</li>
+</ul>
+<% end %>
+<% end %>
+<% end %>
+
 
 <h3>List of Events: </h3>
-<% @group.events.each do |event| %>
+<% @events.each do |event| %>
+<% if @group.id == event.group_id %>
+<% @movie = HTTParty.get "http://omdbapi.com?i=#{event.imdb_id}" %>
 <ul>
-  <li><%= event.imdb_id %> at <%= event.location %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
+  <li><%= @movie["Title"] %> at <%= link_to(event.location, event_path(event.id)) %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
 </ul>
 <% end %>
 
+<% end %>
+
+<%= link_to "Create Event", new_event_path %>
 <%= link_to "Edit Group", group_edit_path %>
+
+<% end %>

@@ -10,6 +10,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  details    :text
+#  group_id   :integer
 #
 
 class Event < ActiveRecord::Base
