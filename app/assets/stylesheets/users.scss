@@ -7,6 +7,11 @@
   max-width: 500px;
 }
 
+.profile_img {
+  max-width: 250px;
+  border-radius: 1em;
+}
+
 .thumb {
   max-height: 60px;
   max-width: 40px;
@@ -31,6 +36,7 @@ body {
 .top_nav a {
   color: #FEE169;
   text-decoration: none;
+  padding-left: 15px;
 }
 
 .top_nav a:hover {
@@ -47,10 +53,16 @@ nav {
 nav a {
   text-decoration: none;
   color: white;
+  padding-left: 15px;
 }
 
 nav a:hover {
   color: #FEE169;
+}
+
+h1 {
+  margin-top: 0;
+  text-align: center;
 }
 
 h3 {
@@ -90,6 +102,13 @@ h5 {
 }
 
 .container {
-  max-width: 960px;
+  box-sizing: border-box;
+  max-width: 760px;
   margin: 0 auto;
+  background-color: rgba(255,255,255, 0.7);
+  min-height: 100vh;
+}
+
+.inner_container {
+  padding: 15px;
 }

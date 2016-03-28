@@ -61,6 +61,12 @@ class GroupsController < ApplicationController
     redirect_to "/groups/#{@current_user.group_id}"
   end
 
+  def leave_group
+    group = Group.find params[:id]
+    group.users.delete(@current_user)
+    redirect_to root_path
+  end
+
   private
   def group_params
     params.require(:group).permit(:name, :image)

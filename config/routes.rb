@@ -15,6 +15,7 @@ root :to => 'pages#welcome'
 
 get '/users/edit' => 'users#edit'
 get '/groups/search' => 'groups#search'
+get '/groups/leave' => 'groups#leave'
 get '/groups/:id/edit' => 'groups#edit', :as => 'group_edit'
 get '/groups/:id/join' => 'groups#join', :as => 'group_join'
 get '/groups/approve/:id' => 'groups#accept_member'
