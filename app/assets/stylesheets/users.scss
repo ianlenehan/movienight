@@ -1,6 +1,8 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Passion+One|Anton|Pacifico|Exo);
+
 .feature {
   max-width: 500px;
 }
@@ -8,4 +10,86 @@
 .thumb {
   max-height: 60px;
   max-width: 40px;
+}
+
+.emoji {
+  max-width: 25px;
+}
+
+body {
+  background-color: rgb(254, 225, 105);
+  color: rgb(38, 31, 39);
+  margin: 0;
+  font-family: 'Exo', sans-serif;
+}
+
+.top_nav {
+  background-color: #261F27;
+  padding: 10px;
+}
+
+.top_nav a {
+  color: #FEE169;
+  text-decoration: none;
+}
+
+.top_nav a:hover {
+  color: #F9722E;
+}
+
+nav {
+  background-color: #F9722E;
+  text-align: center;
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  color: #FEE169;
+}
+
+h3 {
+  margin: 10px;
+}
+
+h4, h5 {
+  display: inline;
+  color: #FEE169;
+}
+
+h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 42px;
+}
+
+h5 {
+  font-family: 'Pacifico', cursive;
+  font-size: 38px;
+}
+
+.title {
+  display: inline-block;
+  width: 65%;
+}
+
+.user_buttons {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  color: white;
+}
+
+.title a {
+  text-decoration: none;
+  color: inherit;;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
 }

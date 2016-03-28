@@ -22,6 +22,7 @@ get '/groups/reject/:id' => 'groups#reject_member'
 
 get '/events/:id/search' => 'events#search'
 get '/events/:id/delete' => 'events#destroy'
+get '/events/:id/:rated' => 'events#add_rating'
 get '/details/:id/:imdbid' => 'events#details'
 get '/details/:id/:imdbid/update_movie' => 'events#update_movie'
 post '/events/:id/attending' => 'events#attending', :as => 'event_attending'
