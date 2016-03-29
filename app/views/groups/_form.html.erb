@@ -1,13 +1,15 @@
 <%= form_for @group do |f| %>
-  <fieldset>
+  <!-- <fieldset> -->
     <%= f.label :name %>
     <%= f.text_field :name %>
-  </fieldset>
+  <!-- </fieldset>
 
-  <fieldset>
+  <fieldset> -->
     <%= f.label :image %>
     <%= f.url_field :image %>
-  </fieldset>
+  <!-- </fieldset> -->
+  <p>
 
-  <label></label>  <%= f.submit %>
+  <label></label>  <span class="ruby_button"><%= f.submit %></span>
+  </p>
 <% end %>

@@ -31,6 +31,15 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+body a {
+  text-decoration: none;
+  color: #d22418;
+}
+
+body a:hover {
+  color: #ffd173;
+}
+
 .top_nav {
   background-color: #261F27;
   padding: 10px;
@@ -110,7 +119,7 @@ h5 {
 
 .title a {
   text-decoration: none;
-  color: inherit;;
+  color: inherit;
 }
 
 .container {
@@ -203,17 +212,18 @@ h5 {
   display: inline-block;
 }
 
-.omdb_container {
+.flex_container {
   display: flex;
   align-items: stretch;
 }
 
-.movie_poster {
+.flex_left {
   padding-right: 50px;
 }
 
-.movie_details {
+.flex_right {
   flex-grow: 1;
+  overflow: scroll;
 }
 
 .movie_details .emoji {
@@ -257,7 +267,7 @@ fieldset {
   cursor: pointer;
 }
 
-.button:hover {
+.button:hover, .ruby_button:hover * {
   background: #d22418;
   color: white;
 }
@@ -273,4 +283,17 @@ fieldset {
 .button:hover, .button_small:hover, .ruby_smallbutton:hover * {
   background: #d22418;
   color: white;
+}
+
+footer {
+  background-color: #261F27;
+  color: gainsboro;
+  font-size: 10px;
+  text-align: center;
+  padding: 10px 0 10px 0;
+}
+
+.bottom_links {
+  text-align: center;
+  padding: 10px;
 }

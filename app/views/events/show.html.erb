@@ -4,13 +4,13 @@
 
 <% if @event.imdb_id %>
   <h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
-<div class="omdb_container">
+<div class="flex_container">
 
-<div class="movie_poster">
+<div class="flex_left">
 <p><%= image_tag @movie["Poster"] %></p>
 </div>
 
-<div class="movie_details">
+<div class="flex_right">
   <p><b>Director:</b> <%= @movie["Director"] %></p>
   <p><b>Starring:</b> <%= @movie["Actors"] %></p>
   <p><b>Runtime:</b> <%= @movie["Runtime"] %></p>
