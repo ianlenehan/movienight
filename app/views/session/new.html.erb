@@ -1,11 +1,15 @@
-<h1>Login</h1>
 
-<%= form_tag login_path do  %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
+<div class="over_container">
+  <h1 class="intro">Login to Movie Night</h1>
+<div class="cinema_screen">
+  <%= form_tag login_path :html => {:class => "rails_form"} do  %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag 'Login' %>
-<% end %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+<br><br>
+  <p><span class="ruby_smallbutton"><%= submit_tag 'Login' %> </span></p>
+  <% end %>
+</div>
+</div>

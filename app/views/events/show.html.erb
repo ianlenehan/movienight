@@ -1,21 +1,15 @@
 <h1>Movie Night Event Details</h1>
 <h2><%= @event.location %> on <%= @event.date.strftime '%A %e %B, %Y' %></h2>
 
+
 <% if @event.imdb_id %>
-<h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
+  <h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
 <div class="omdb_container">
 
 <div class="movie_poster">
-
 <p><%= image_tag @movie["Poster"] %></p>
-
-<% if flash[:alert] %>
-  <p style="color: green;"><%= flash[:alert] %></p>
-<% end %>
-
-<% end %>
 </div>
-<% unless !@event.imdb_id %>
+
 <div class="movie_details">
   <p><b>Director:</b> <%= @movie["Director"] %></p>
   <p><b>Starring:</b> <%= @movie["Actors"] %></p>
@@ -27,7 +21,7 @@
   <form class="event_film action="/events/<%= @event.id %>/search">
     <label>Add or change film: </label>
     <input type="text" name="title">
-    <input type="submit" value="Search">
+    <input type="submit" value="Search" class="button_small">
   </form>
   <hr>
   <p>Rate the choice of film:
@@ -39,8 +33,9 @@
   </p>
 
 </div>
-<% end %>
 
+</div>
+<% end %>
 
 
 
@@ -59,11 +54,9 @@
 
 <% if @event.users.where(:id => @current_user.id).any? %>
 <p>You are attending.</p>
-<p><%= button_to 'Not Attending', event_not_attending_path %></p>
+<p><%= button_to 'Not Attending', event_not_attending_path, :class=> "button" %></p>
 <% else %>
 <p><%= button_to 'Attending', event_attending_path %></p>
 <% end %>
 <p><%= link_to 'Edit Event', edit_event_path(@event) %></p>
 <p><%= link_to 'Delete Event', @event, :method => :delete %></p>
-
-</div>

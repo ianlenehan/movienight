@@ -153,7 +153,7 @@ h5 {
 
 .cinema_screen  {
   padding-top: 60px;
-  width :300px;
+  width :500px;
   margin: 0 auto;
   text-align: center;
 }
@@ -218,4 +218,59 @@ h5 {
 
 .movie_details .emoji {
   padding-left: 20px;
+}
+
+input {
+  min-height: 25px;
+  min-width: 75px;
+  border-radius: 3px;
+  border: 1px solid gainsboro;
+  box-sizing: border-box;
+}
+
+.rails_form {
+  margin-left: 100px;
+}
+
+.rails_form input {
+  min-width: 300px;
+  left: 500px;
+  position: absolute;;
+  border: solid 1px gainsboro;
+}
+
+.rails_form label {
+  width: 200px;
+  left:300px;
+}
+
+fieldset {
+  border: none;
+}
+
+.button, .ruby_button * {
+  background: #ffd173;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #d22418;
+  color: white;
+}
+
+.button_small, .ruby_smallbutton * {
+  background: #ffd173;
+  border: none;
+  cursor: pointer;
+  height: 25px;
+  max-width: 75px;
+}
+
+.button:hover, .button_small:hover, .ruby_smallbutton:hover * {
+  background: #d22418;
+  color: white;
 }

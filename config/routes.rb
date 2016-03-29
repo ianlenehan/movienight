@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 root :to => 'pages#welcome'
 
 get '/users/edit' => 'users#edit'
+
 get '/groups/search' => 'groups#search'
 get '/groups/search_index' => 'groups#search_index'
 get '/groups/:id/leave' => 'groups#leave_group', :as => 'group_leave'
@@ -24,11 +25,13 @@ get '/groups/reject/:id' => 'groups#reject_member'
 
 get '/events/:id/search' => 'events#search'
 get '/events/:id/delete' => 'events#destroy'
-get '/events/:id/:rated' => 'events#add_rating'
-get '/details/:id/:imdbid' => 'events#details'
-get '/details/:id/:imdbid/update_movie' => 'events#update_movie'
 post '/events/:id/attending' => 'events#attending', :as => 'event_attending'
 post '/events/:id/not_attending' => 'events#not_attending', :as => 'event_not_attending'
+get '/events/rate/:id/:rated' => 'events#add_rating'
+
+get '/details/:id/:imdbid' => 'events#details'
+get '/details/:id/:imdbid/update_movie' => 'events#update_movie'
+
 
 resources :users, :only  => [:new, :create, :index, :update, :show]
 resources :groups, :only => [:new, :create, :index, :update, :show]

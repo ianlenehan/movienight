@@ -1,4 +1,4 @@
-<%= form_for @event do |f| %>
+<%= form_for(@event, :html => {:class => "rails_form"}) do |f| %>
   <fieldset>
     <%= f.label :location %>
     <%= f.text_field :location, :required => 'true' %>
@@ -19,5 +19,5 @@
     <%= f.text_field :details %>
   </fieldset>
 
-  <label></label>  <%= f.submit %>
+  <label></label> <span class="ruby_smallbutton"> <%= f.submit %></span>
 <% end %>
