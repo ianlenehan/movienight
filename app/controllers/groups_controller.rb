@@ -67,9 +67,9 @@ class GroupsController < ApplicationController
   end
 
   def leave_group
-    group = Group.find params[:id]
-    group.users.delete(@current_user)
     @current_user.group_member = false
+    @current_user.group_id = nil
+    @current_user.save
     redirect_to root_path
   end
 

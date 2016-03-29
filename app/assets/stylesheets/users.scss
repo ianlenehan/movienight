@@ -51,7 +51,7 @@ body {
 nav {
   // background-color: #F9722E;
   // background-color: #d22418;
-  background-image: url('/assets/curtain1.jpg');
+  background-image: image-url('curtain1.jpg');
   background-size: 20px;
   background-repeat: repeat-x;
   text-align: center;
@@ -235,7 +235,7 @@ input {
 .rails_form input {
   min-width: 300px;
   left: 500px;
-  position: absolute;;
+  position: absolute;
   border: solid 1px gainsboro;
 }
 
