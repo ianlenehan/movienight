@@ -8,7 +8,7 @@
   </ol>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user do |f|, :class=> "new_user" %>
   <%= f.label :name_first, :as => 'First name' %>
   <%= f.text_field :name_first, :required => true %>
 

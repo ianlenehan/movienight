@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   def add_rating
     event = Event.find params[:id]
     rated = params[:rated]
-    if @current_user.group_id != event.group.id
+    if @current_user.group_id != event.group_id
       redirect_to root_path
     else
       if event.ratings.exists?(user_id: @current_user.id)

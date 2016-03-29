@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import url(https://fonts.googleapis.com/css?family=Passion+One|Anton|Pacifico|Exo);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Codystar);
 
 .feature {
   max-width: 500px;
@@ -49,9 +50,12 @@ body {
 
 nav {
   // background-color: #F9722E;
-  background-color: #d22418;
+  // background-color: #d22418;
+  background-image: url('/assets/curtain1.jpg');
+  background-size: 20px;
+  background-repeat: repeat-x;
   text-align: center;
-  padding: 1px;
+  padding: 8px;
   box-sizing: border-box;
 }
 
@@ -68,10 +72,12 @@ nav a:hover {
 h1 {
   margin-top: 0;
   text-align: center;
+  font-family: 'Codystar', cursive;
+  font-size: 36px;
 }
 
 h3 {
-  margin: 10px;
+  margin: 10px 0 10px 0;
 }
 
 h4, h5 {
@@ -128,7 +134,9 @@ h5 {
   max-width: 960px;
   margin: 0 auto;
   background-image: image-url('Cinema-screen.jpg');
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   padding: 15px;
   margin: -35px;
@@ -153,4 +161,61 @@ h5 {
 .search_form {
   display: inline-block;
   padding-right: 5px;
+}
+
+.emoji {
+  width: 15px;
+  margin: -2px;
+  display: inline-block;
+}
+
+.rating_images {
+  list-style: none;
+  display: inline-block;
+  margin-top: -20px;
+  margin-left: 10px;
+}
+
+.rating_images li {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.event_film input {
+  display: inline-block;
+}
+
+.attendee, .emoji2 {
+  display: inline;
+}
+
+.attendees {
+  line-height: 10px;
+}
+
+.attendee {
+  min-width: 50px;
+  display: inline-block;
+
+}
+
+.emoji_div {
+  display: inline-block;
+}
+
+.omdb_container {
+  display: flex;
+  align-items: stretch;
+}
+
+.movie_poster {
+  padding-right: 50px;
+}
+
+.movie_details {
+  flex-grow: 1;
+}
+
+.movie_details .emoji {
+  padding-left: 20px;
 }

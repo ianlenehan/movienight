@@ -1,5 +1,7 @@
 <h1><%= @user.name_first %> <%= @user.name_last %></h1>
+<% if @current_user.group_member == true %>
 <p>Member of: <%= @user.group.name %></p>
+<% end %>
 <img class="profile_img" src="<%= @user.image %>" alt="<%= @user.name_first %> photo goes here">
 <h3>Events Attended</h3>
 <% @user.events.each do |event| %>

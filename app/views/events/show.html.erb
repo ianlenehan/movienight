@@ -2,41 +2,60 @@
 <h2><%= @event.location %> on <%= @event.date.strftime '%A %e %B, %Y' %></h2>
 
 <% if @event.imdb_id %>
-<p><%= @movie["Title"] %></p>
+<h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
+<div class="omdb_container">
+
+<div class="movie_poster">
+
 <p><%= image_tag @movie["Poster"] %></p>
 
-<h3>Ratings</h3>
-<ul>
-<li><%= link_to image_tag(("/assets/emoji/heart.png"), :class => 'emoji'), "/events/#{@event.id}/awesome" %></li>
-<li><%= link_to image_tag(("/assets/emoji/smirk.png"), :class => 'emoji'), "/events/#{@event.id}/good" %></li>
-<li><%= link_to image_tag(("/assets/emoji/expressionless.png"), :class => 'emoji'), "/events/#{@event.id}/meh" %></li>
-<li><%= link_to image_tag(("/assets/emoji/unamused.png"), :class => 'emoji'), "/events/#{@event.id}/bad" %></li>
-<li><%= link_to image_tag(("/assets/emoji/shit.png"), :class => 'emoji'), "/events/#{@event.id}/poo" %></li>
-</ul>
 <% if flash[:alert] %>
   <p style="color: green;"><%= flash[:alert] %></p>
 <% end %>
-<% @ratings.each do |rating| %>
-<ul>
-  <li>"<%= rating.rating_score %>" - <%= rating.user.name_first %> <%= rating.user.name_last %></li>
-</ul>
-<% end %>
 
 <% end %>
+</div>
+<% unless !@event.imdb_id %>
+<div class="movie_details">
+  <p><b>Director:</b> <%= @movie["Director"] %></p>
+  <p><b>Starring:</b> <%= @movie["Actors"] %></p>
+  <p><b>Runtime:</b> <%= @movie["Runtime"] %></p>
+  <p><b>Genre:</b> <%= @movie["Genre"] %></p>
+  <p><b>IMDB Rating:</b> <%= @movie["imdbRating"] %></p>
+  <p><b>Plot:</b> <%= @movie["Plot"] %></p>
 
-<p>Add or update film</p>
-<form action="/events/<%= @event.id %>/search">
-  <input type="text" name="title">
-  <input type="submit">
-</form>
+  <form class="event_film action="/events/<%= @event.id %>/search">
+    <label>Add or change film: </label>
+    <input type="text" name="title">
+    <input type="submit" value="Search">
+  </form>
+  <hr>
+  <p>Rate the choice of film:
+    <%= link_to image_tag(("/assets/heart.png"), :class => 'emoji'), "/events/#{@event.id}/heart" %>
+    <%= link_to image_tag(("/assets/smiley.png"), :class => 'emoji'), "/events/#{@event.id}/simley" %>
+    <%= link_to image_tag(("/assets/neutral.png"), :class => 'emoji'), "/events/#{@event.id}/neutral" %>
+    <%= link_to image_tag(("/assets/unamused.png"), :class => 'emoji'), "/events/#{@event.id}/unamused" %>
+    <%= link_to image_tag(("/assets/poo.png"), :class => 'emoji'), "/events/#{@event.id}/poo" %>
+  </p>
 
-<h3>Attendees</h3>
+</div>
+<% end %>
 
-<ul>
+
+
+
+<div class="attendees">
+  <h3>Attendees</h3>
   <% @event.users.each do |user| %>
-  <li><%= user.name_first %> </li>
+  <% rating = Rating.find_by({ event_id: @event.id, user_id: user.id }) %>
+
+    <div class="attendee"><%= user.name_first %>
+    <% if rating %></div>
+    <div class="emoji_div"><%= image_tag "#{rating.rating_score }.png", :class => "emoji" %>
+    <% end %></div></p>
+<br>
   <% end %>
-</ul>
+</div>
 
 <% if @event.users.where(:id => @current_user.id).any? %>
 <p>You are attending.</p>
@@ -46,3 +65,5 @@
 <% end %>
 <p><%= link_to 'Edit Event', edit_event_path(@event) %></p>
 <p><%= link_to 'Delete Event', @event, :method => :delete %></p>
+
+</div>
