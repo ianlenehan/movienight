@@ -1,13 +1,19 @@
+
+<div class="over_container">
 <h1 class="intro">Group Search</h1>
 <% if @current_user.present? && @current_user.group_member != true %>
 <div class="cinema_screen">
-<h3>Search for a Group to join</h3>
+<h3>Search for a Group to Join</h3>
+<p></p><p></p>
 <form action="/groups/search/">
-  <label>Group Name (or partial name): </label>
-  <input type="text" name="name">
-  <input type="submit">
+  <label class="search_form">Group name:</label>
+  <input class="search_form" type="text" name="name">
+  <input value="Search" type="submit">
 </form>
+<p></p><hr><p></p>
+<p>Once you find the group you are looking for, the administrator of this group can approve your request to join this group.</p>
 <% elsif @current_user.group_member == true %>
   <p>You are already a member of <%= @current_user.group.name %>. <%= link_to("Leave group?", group_leave_path) %></p>
 <% end %>
+</div>
 </div>

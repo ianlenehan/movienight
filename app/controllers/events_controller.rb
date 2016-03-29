@@ -76,6 +76,9 @@ class EventsController < ApplicationController
   def add_rating
     event = Event.find params[:id]
     rated = params[:rated]
+    if @current_user.group_id != event.group.id
+      redirect_to root_path
+    else
       if event.ratings.exists?(user_id: @current_user.id)
         flash.now[:alert] = 'You have already rated this event!'
         redirect_to event
@@ -87,6 +90,7 @@ class EventsController < ApplicationController
         rating.save
         redirect_to event
       end
+    end
   end
 
   private
