@@ -1,10 +1,4 @@
-<h1>Welcome to Movie Night.</h1>
-
-<% if @current_user.present? && @current_user.group_member != true %>
-<h3>Search for a Group to join</h3>
-<form action="/groups/search/">
-  <label>Group Name (or partial name): </label>
-  <input type="text" name="name">
-  <input type="submit">
-</form>
-<% end %>
+<h1 class="intro">Welcome to Movie Night.</h1>
+<div class="cinema_screen">
+  <h3>Information about movie night.</h3>
+</div>

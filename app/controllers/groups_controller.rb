@@ -6,6 +6,8 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
+
+
   def new
     @group = Group.new
   end
@@ -39,6 +41,9 @@ class GroupsController < ApplicationController
     @group_search = Group.where("name like ?", "%#{@name}%")
   end
 
+  def search_index
+  end
+
   def join
     @group = Group.find params[:id]
     @current_user.group_id = @group.id
@@ -64,6 +69,7 @@ class GroupsController < ApplicationController
   def leave_group
     group = Group.find params[:id]
     group.users.delete(@current_user)
+    @current_user.group_member = false
     redirect_to root_path
   end
 

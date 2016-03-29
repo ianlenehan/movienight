@@ -103,12 +103,30 @@ h5 {
 
 .container {
   box-sizing: border-box;
-  max-width: 760px;
+  max-width: 960px;
   margin: 0 auto;
-  background-color: rgba(255,255,255, 0.7);
+  // background-color: rgba(255,255,255, 0.7);
+  background-image: url('/assets/Cinema-screen.jpg');
+  background-size: contain;
   min-height: 100vh;
 }
 
 .inner_container {
   padding: 15px;
+}
+
+.group_events {
+  height: 200px;
+  overflow: scroll;
+}
+
+.intro {
+  color: white;
+}
+
+.cinema_screen  {
+  padding-top: 20px;
+  width :300px;
+  margin: 0 auto;
+  text-align: center;
 }

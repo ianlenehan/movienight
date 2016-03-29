@@ -31,6 +31,7 @@
 
 
 <h3>Group Events: </h3>
+<div class="group_events">
 <% @events.each do |event| %>
 <% if @group.id == event.group_id %>
 <% @movie = HTTParty.get "http://omdbapi.com?i=#{event.imdb_id}" %>
@@ -38,10 +39,11 @@
   <li><%= @movie["Title"] %> at <%= link_to(event.location, event_path(event.id)) %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
 </ul>
 <% end %>
-
 <% end %>
+</div>
 
 <%= link_to "Create Event", new_event_path %>
 <%= link_to "Edit Group", group_edit_path %>
+<%= link_to "Leave Group", group_leave_path %>
 
 <% end %>
