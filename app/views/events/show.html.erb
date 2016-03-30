@@ -1,16 +1,19 @@
 <h1>Movie Night Event Details</h1>
 <h2><%= @event.location %> on <%= @event.date.strftime '%A %e %B, %Y' %></h2>
-
-
+<p>Details: <%= @event.details %></p>
+<hr>
 <% if @event.imdb_id %>
-  <h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
+<h3><%= @movie["Title"] %> (<%= @movie["Year"] %>)</h3>
+<% end %>
 <div class="flex_container">
-
+  <% if @event.imdb_id %>
 <div class="flex_left">
 <p><%= image_tag @movie["Poster"] %></p>
 </div>
+<% end %>
 
 <div class="flex_right">
+  <% if @event.imdb_id %>
   <p><b>Director:</b> <%= @movie["Director"] %></p>
   <p><b>Starring:</b> <%= @movie["Actors"] %></p>
   <p><b>Runtime:</b> <%= @movie["Runtime"] %></p>
@@ -18,11 +21,7 @@
   <p><b>IMDB Rating:</b> <%= @movie["imdbRating"] %></p>
   <p><b>Plot:</b> <%= @movie["Plot"] %></p>
 
-  <form class="event_film action="/events/<%= @event.id %>/search">
-    <label>Add or change film: </label>
-    <input type="text" name="title">
-    <input type="submit" value="Search" class="button_small">
-  </form>
+
   <hr>
   <p>Rate the choice of film:
     <%= link_to image_tag(("/assets/heart.png"), :class => 'emoji'), "/events/#{@event.id}/heart" %>
@@ -31,13 +30,18 @@
     <%= link_to image_tag(("/assets/unamused.png"), :class => 'emoji'), "/events/#{@event.id}/unamused" %>
     <%= link_to image_tag(("/assets/poo.png"), :class => 'emoji'), "/events/#{@event.id}/poo" %>
   </p>
+  <% end %>
+  <form class="event_film action="/events/<%= @event.id %>/search">
+    <label>Add or change film: </label>
+    <input type="text" name="title">
+    <input type="submit" value="Search" class="button_small">
+  </form>
 
 </div>
 
 </div>
-<% end %>
 
-
+<hr>
 
 <div class="attendees">
   <h3>Attendees</h3>
@@ -53,10 +57,16 @@
 </div>
 
 <% if @event.users.where(:id => @current_user.id).any? %>
-<p>You are attending.</p>
-<p><%= button_to 'Not Attending', event_not_attending_path, :class=> "button" %></p>
+<p><%= link_to 'Not Attending', event_not_attending_path, :class => "button" %></p>
+<h6>You are attending.</h6>
 <% else %>
-<p><%= button_to 'Attending', event_attending_path %></p>
+<p><%= link_to 'Attending', event_attending_path, :class => "button" %></p>
+<h6>You are not attending.</h6>
 <% end %>
-<p><%= link_to 'Edit Event', edit_event_path(@event) %></p>
-<p><%= link_to 'Delete Event', @event, :method => :delete %></p>
+<hr>
+<div class="bottom_links">
+<%= link_to 'Edit Event', edit_event_path(@event), :class => "button" %>
+<% if @current_user.group_admin %>
+<%= link_to 'Delete Event', @event, :method => :delete, :class => "button" %>
+<% end %>
+</div>

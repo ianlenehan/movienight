@@ -47,12 +47,38 @@
 </ul>
 <% end %>
 <% end %>
+
 </div>
 </div>
 </div>
+  <hr>
 <div class="bottom_links">
-<%= button_to "Create Event", new_event_path, :class => "button", :method => 'get' %>
-<%= button_to "Edit Group", group_edit_path, :class => "button", :method => 'get' %>
-<%= button_to "Leave Group", group_leave_path, :class => "button", :method => 'get' %>
+<%= link_to "  Create Event", new_event_path, :class => "button fa fa-plus fa-2x" %>
+<% if @current_user.group_admin %>
+<%= link_to "  Edit Group", group_edit_path, :class => "button fa fa-pencil fa-2x" %>
+<% end %>
+<%= link_to "  Leave Group", group_leave_path, :class => "button fa fa-sign-out fa-2x" %>
 </div>
+<div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+// this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = <%= @group.id %>; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//movie-night.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 <% end %>

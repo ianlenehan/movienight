@@ -25,8 +25,8 @@ get '/groups/reject/:id' => 'groups#reject_member'
 
 get '/events/:id/search' => 'events#search'
 get '/events/:id/delete' => 'events#destroy'
-post '/events/:id/attending' => 'events#attending', :as => 'event_attending'
-post '/events/:id/not_attending' => 'events#not_attending', :as => 'event_not_attending'
+get '/events/:id/attending' => 'events#attending', :as => 'event_attending'
+get '/events/:id/not_attending' => 'events#not_attending', :as => 'event_not_attending'
 get '/events/rate/:id/:rated' => 'events#add_rating'
 
 get '/details/:id/:imdbid' => 'events#details'

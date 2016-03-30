@@ -6,7 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Codystar);
 
 .feature {
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .profile_img {
@@ -21,6 +21,7 @@
 
 .emoji {
   max-width: 25px;
+  padding: 0 5px 0 5px;
 }
 
 body {
@@ -86,7 +87,7 @@ h1 {
 }
 
 h3 {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 h4, h5 {
@@ -103,6 +104,11 @@ h4 {
 h5 {
   font-family: 'Pacifico', cursive;
   font-size: 38px;
+}
+
+h6 {
+  font-size: 12px;
+  font-style: italic;
 }
 
 .title {
@@ -265,6 +271,8 @@ fieldset {
   font-size: 14px;
   padding: 10px 15px;
   cursor: pointer;
+  color: rgb(38, 31, 39);
+  // font-family: 'Open Sans', sans-serif;
 }
 
 .button:hover, .ruby_button:hover * {
@@ -294,6 +302,12 @@ footer {
 }
 
 .bottom_links {
+  margin-top: 20px;
   text-align: center;
   padding: 10px;
+}
+
+hr {
+  border-color: #ffd173;
+  border-style: solid;
 }
