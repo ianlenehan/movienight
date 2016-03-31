@@ -25,6 +25,14 @@ Rate each movie and add your comments in the group page!
 * All group members can indicate their attendance. Once attending, you can remove your attendance if necessary.
 * The choice of film can be rated by each user. Each user has only one rating but can change ratings by simply clicking on their new rating emoji.
 
-# Group Admins
+## Group Admins
 * Group admins may choose to make other users a group admin. This must happen before they are allowed to leave the group, as each group must have at least one admin.
 * Group admins may remove any other user from the group.
+
+### Gems and APIs
+* Sweet Alert (gem did not work, included JS and CSS file)
+* HTTParty to access OMDB API
+* Disqus for comments
+* Animate.css for CSS animation
+* Hover.css for CSS animation
+* Cloudinary for image upload
