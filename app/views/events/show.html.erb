@@ -2,7 +2,7 @@
 <h2><%= @event.location %>
   on
   <%= @event.date.strftime '%A %e %B, %Y' %></h2>
-<p>Details:
+<p><b>Details:</b>
   <%= @event.details %></p>
 <hr>
 <% if @event.imdb_id %>
