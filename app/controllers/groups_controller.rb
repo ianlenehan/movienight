@@ -6,16 +6,18 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-
-
   def new
     @group = Group.new
   end
 
   def create
+    req = Cloudinary::Uploader.upload( params[:group][:image] )
     group = Group.create group_params
+    group.image = req["url"]
+    group.save
     @current_user.group_id = group.id
     @current_user.group_admin = true
+    @current_user.group_member = true
     @current_user.save
     redirect_to group
   end
@@ -23,7 +25,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find params[:id]
-    @events = Event.all
+    @events = Event.all.order('date DESC')
   end
 
   def edit
@@ -31,7 +33,9 @@ class GroupsController < ApplicationController
   end
 
   def update
+    req = Cloudinary::Uploader.upload( params[:group][:image] )
     group = Group.find params[:id]
+    group.image = req["url"]
     group.update group_params
     redirect_to group
   end
@@ -67,15 +71,26 @@ class GroupsController < ApplicationController
   end
 
   def leave_group
+    if @current_user.group_admin
+      @current_user.group_admin = false
+    end
     @current_user.group_member = false
     @current_user.group_id = nil
     @current_user.save
     redirect_to root_path
   end
 
+  def make_admin
+    user = User.find params[:user]
+    group = Group.find params[:id]
+    user.group_admin = true
+    user.save
+    redirect_to group
+  end
+
   private
   def group_params
-    params.require(:group).permit(:name, :image)
+    params.require(:group).permit(:name)
   end
 
   def authorise

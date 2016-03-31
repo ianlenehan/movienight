@@ -4,6 +4,7 @@
     <title>Movienight</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= cloudinary_js_config %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -18,6 +19,7 @@
         <% if @current_user.present? %>
         <%= link_to @current_user.name_first, user_path(@current_user) %>
         <%= link_to "Logout", login_path, :method => :delete %>
+        <%= link_to (cl_image_tag @current_user.image, :class => "thumb person_thumb hvr-bob"), user_path(@current_user) %>
       <% else %>
         <%= link_to 'Sign up', signup_path %>
         <%= link_to 'Login', login_path %>

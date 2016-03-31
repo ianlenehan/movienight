@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   end
 
   def create
+    req = Cloudinary::Uploader.upload( params[:user][:image] )
     @user = User.new user_params
+    @user.image = req["url"]
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
@@ -29,14 +31,16 @@ class UsersController < ApplicationController
   end
 
   def update
+    req = Cloudinary::Uploader.upload( params[:user][:image] )
     user = @current_user
+    user.image = req["url"] 
     user.update user_params
     redirect_to user_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name_first, :name_last, :email, :password, :password_confirmation, :image)
+    params.require(:user).permit(:name_first, :name_last, :email, :password, :password_confirmation)
   end
 
   def authorise

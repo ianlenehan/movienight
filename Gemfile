@@ -27,7 +27,9 @@ gem 'annotate'
 gem 'httparty'
 gem 'disqus_api'
 gem 'font-awesome-sass', '~> 4.5.0'
-
+gem 'cloudinary'
+gem 'animate-rails'
+gem 'hover-rails', '~> 2.0', '>= 2.0.2'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

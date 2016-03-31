@@ -24,6 +24,9 @@
   <p><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, :required => true %></p>
 
+  <p><%= f.label :image, 'Photo' %>
+  <%= f.file_field :image %></p>
+
   <p><span class="ruby_smallbutton"><%= f.submit "Sign up" %></span>
 
 <% end %>

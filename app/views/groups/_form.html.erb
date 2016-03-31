@@ -1,15 +1,15 @@
-<%= form_for @group do |f| %>
-  <!-- <fieldset> -->
-    <%= f.label :name %>
+<%= form_for(@group, :html => {:class => "rails_form"}) do |f| %>
+  <fieldset>
+    <%= f.label :name, 'Group Name' %>
     <%= f.text_field :name %>
-  <!-- </fieldset>
+</fieldset>
 
-  <fieldset> -->
-    <%= f.label :image %>
-    <%= f.url_field :image %>
-  <!-- </fieldset> -->
+  <fieldset>
+    <%= f.label :image, 'Group Photo' %>
+    <span class="upload"><%= f.file_field :image %></span>
+  </fieldset>
   <p>
 
-  <label></label>  <span class="ruby_button"><%= f.submit %></span>
+  <label></label>  <span class="ruby_smallbutton"><%= f.submit %></span>
   </p>
 <% end %>

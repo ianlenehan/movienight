@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :authorise, :only => [:index]
 
   def index
-    @events = Event.all
+    @events = Event.all.order('date DESC')
   end
 
   def new
@@ -80,16 +80,14 @@ class EventsController < ApplicationController
       redirect_to root_path
     else
       if event.ratings.exists?(user_id: @current_user.id)
-        flash.now[:alert] = 'You have already rated this event!'
-        redirect_to event
-      else
+        event.ratings.destroy(event.ratings.where(:user_id => @current_user.id))
+      end
         rating = Rating.create
         rating.user_id = @current_user.id
         rating.rating_score = rated
         rating.event_id = params[:id]
         rating.save
         redirect_to event
-      end
     end
   end
 

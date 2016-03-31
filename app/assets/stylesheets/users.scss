@@ -19,9 +19,16 @@
   max-width: 40px;
 }
 
+.person_thumb {
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
 .emoji {
-  max-width: 25px;
   padding: 0 5px 0 5px;
+  width: 20px;
+  margin: -2px;
+  display: inline-block;
 }
 
 body {
@@ -50,7 +57,7 @@ body a:hover {
   // color: #FEE169;
   color: #ffd173;
   text-decoration: none;
-  padding-left: 15px;
+  padding: 0 15px 0 15px;
 }
 
 .top_nav a:hover {
@@ -160,6 +167,7 @@ h6 {
 .group_events {
   height: 200px;
   overflow: scroll;
+  line-height: normal;
 }
 
 .intro {
@@ -167,7 +175,7 @@ h6 {
 }
 
 .cinema_screen  {
-  padding-top: 60px;
+  padding-top: 50px;
   width :500px;
   margin: 0 auto;
   text-align: center;
@@ -176,12 +184,6 @@ h6 {
 .search_form {
   display: inline-block;
   padding-right: 5px;
-}
-
-.emoji {
-  width: 15px;
-  margin: -2px;
-  display: inline-block;
 }
 
 .rating_images {
@@ -196,26 +198,25 @@ h6 {
   padding-left: 10px;
 }
 
+.event_film {
+  margin-bottom: 15px;
+}
+
 .event_film input {
   display: inline-block;
-}
-
-.attendee, .emoji2 {
-  display: inline;
-}
-
-.attendees {
-  line-height: 10px;
 }
 
 .attendee {
   min-width: 50px;
   display: inline-block;
-
 }
 
 .emoji_div {
   display: inline-block;
+}
+
+.emoji_div .emoji {
+  margin-bottom: -4px;
 }
 
 .flex_container {
@@ -225,11 +226,21 @@ h6 {
 
 .flex_left {
   padding-right: 50px;
+  // box-sizing: border-box;
+  flex-grow: 1;
 }
 
 .flex_right {
-  flex-grow: 1;
   overflow: scroll;
+  flex-grow: 1;
+  flex-basis: 40%;
+  line-height: 10px;
+  margin-left: 30px;
+}
+
+.flex_center {
+  overflow: scroll;
+  flex-grow: 1;
 }
 
 .movie_details .emoji {
@@ -293,12 +304,19 @@ fieldset {
   color: white;
 }
 
+.button:focus, .button_small:focus, .ruby_smallbutton:focus * {
+  outline: 0;
+}
+
 footer {
   background-color: #261F27;
   color: gainsboro;
   font-size: 10px;
   text-align: center;
   padding: 10px 0 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 .bottom_links {
@@ -310,4 +328,8 @@ footer {
 hr {
   border-color: #ffd173;
   border-style: solid;
+}
+
+.upload input {
+  border: none;
 }

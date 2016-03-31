@@ -1,84 +1,111 @@
 <div class="flex_container">
 
-<div class="flex_left">
+  <div class="flex_left">
+
+    <% if @group.image %>
+    <%= image_tag(@group.image, :class => 'feature') %>
+    <% end %>
+    <% if @current_user.group_id != @group.id %>
+    <p><%= link_to 'Request to Join', group_join_path, :class => "button" %></p>
+    <% elsif @current_user.group_id == @group.id && @current_user.group_member == false %>
+    <p>Your request to join this group is pending.</p>
+    <% elsif @current_user.group_id == @group.id && @current_user.group_member == nil %>
+    <p>Sorry, your request to join this group has been denied.</p>
+    <% end %>
+
+    <% if @current_user.group_id == @group.id && @current_user.group_member == true %>
+
+    <h3>Group Members:</h3>
+    <% @group.users.each do |user| %>
+    <% if user.group_member == true %>
+    <ul>
+      <li><%= user.name_first %>
+        <%= user.name_last %>
+        <% if @current_user.group_admin %>
+        (<%= link_to 'Make Admin', "/groups/#{@group.id}/admin/#{user.id}" %>)
+        <% end %>
+      </li>
+    </ul>
+    <% end %>
+    <% end %>
 
 
-<%= image_tag(@group.image, :class => 'feature') %>
-<% if @current_user.group_id != @group.id %>
-<p><%= link_to 'Request to Join', group_join_path %></p>
-<% elsif @current_user.group_id == @group.id && @current_user.group_member == false %>
-<p>Your request to join this group is pending.</p>
-<% elsif @current_user.group_id == @group.id && @current_user.group_member == nil %>
-<p>Sorry, your request to join this group has been denied.</p>
-<% end %>
+    <% if @current_user.present? && @current_user.group_admin? %>
+    <h3>Membership Requests:</h3>
+    <% @group.users.each do |user| %>
+    <% if user.group_member == false %>
+    <ul>
+      <li><%= user.name_first %>
+        <%= user.name_last %>
+        (<%= link_to 'Approve', "/groups/approve/#{user.id}" %>
+        /
+        <%= link_to 'Reject', "/groups/reject/#{user.id}" %>)</li>
+    </ul>
+    <% end %>
+    <% end %>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="flex_right">
+<% if @current_user.group_id == @group.id && @current_user.group_member == true %>
+    <h3>Group Events:
+    </h3>
+    <div class="group_events">
+      <% @events.each do |event| %>
+      <% if @group.id == event.group_id %>
+      <% @movie = HTTParty.get "http://omdbapi.com?i=#{event.imdb_id}" %>
+      <ul>
+        <li><%= @movie["Title"] %>
+          at
+          <%= link_to(event.location, event_path(event.id)) %>
+          on
+          <%= event.date.strftime '%A %e %B, %Y' %></li>
+      </ul>
+      <% end %>
+      <% end %>
+
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <% if @current_user.group_id == @group.id && @current_user.group_member == true %>
-
-<h3>Group Members:</h3>
-<% @group.users.each do |user| %>
-<% if user.group_member == true %>
-<ul>
-  <li><%= user.name_first %> <%= user.name_last %></li>
-</ul>
-<% end %>
-<% end %>
-
-<% if @current_user.present? && @current_user.group_admin? %>
-<h3>Membership Requests:</h3>
-<% @group.users.each do |user| %>
-<% if user.group_member == false %>
-<ul>
-  <li><%= user.name_first %> <%= user.name_last %> (<%= link_to 'Approve', "/groups/approve/#{user.id}" %> / <%= link_to 'Reject', "/groups/reject/#{user.id}" %>)</li>
-</ul>
-<% end %>
-<% end %>
-<% end %>
-</div>
-<div class="flex_right">
-
-
-<h3>Group Events: </h3>
-<div class="group_events">
-<% @events.each do |event| %>
-<% if @group.id == event.group_id %>
-<% @movie = HTTParty.get "http://omdbapi.com?i=#{event.imdb_id}" %>
-<ul>
-  <li><%= @movie["Title"] %> at <%= link_to(event.location, event_path(event.id)) %> on <%= event.date.strftime '%A %e %B, %Y' %></li>
-</ul>
-<% end %>
-<% end %>
-
-</div>
-</div>
-</div>
-  <hr>
+<hr>
 <div class="bottom_links">
-<%= link_to "  Create Event", new_event_path, :class => "button fa fa-plus fa-2x" %>
-<% if @current_user.group_admin %>
-<%= link_to "  Edit Group", group_edit_path, :class => "button fa fa-pencil fa-2x" %>
-<% end %>
-<%= link_to "  Leave Group", group_leave_path, :class => "button fa fa-sign-out fa-2x" %>
+  <%= link_to "  Create Event", new_event_path, :class => "button" %>
+  <%= link_to "  Edit Group", group_edit_path, :class => "button" %>
+  <% if @current_user.group_admin? && (@group.users.where(:group_admin => true).length < 2) %>
+  <button class="button butt">Exit Group</button>
+<% else %>
+  <%= link_to "  Leave Group", group_leave_path, :class => "button" %>
+  <% end %>
 </div>
-<div id="disqus_thread"></div>
-<script>
-/**
+
+<div id="disqus_thread">
+  <script>
+    /**
 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
 */
 
-var disqus_config = function () {
-// this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = <%= @group.id %>; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
+    var disqus_config = function () {
+      // this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = <%= @group.id %>; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
 
-s.src = '//movie-night.disqus.com/embed.js';
+      s.src = '//movie-night.disqus.com/embed.js';
 
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      s.setAttribute('data-timestamp', + new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+  </noscript>
+
+</div>
 <% end %>

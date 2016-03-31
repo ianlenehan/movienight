@@ -1,12 +1,28 @@
 <h1><%= @user.name_first %> <%= @user.name_last %></h1>
 <% if @current_user.group_member == true %>
+
+<div class="flex_container">
+
+<div class="flex_left">
+
+
 <p>Member of: <%= @user.group.name %></p>
 <% end %>
 <img class="profile_img" src="<%= @user.image %>" alt="<%= @user.name_first %> photo goes here">
+</div>
+<div class="flex_center">
+
+
 <h3>Events Attended</h3>
 <% @user.events.each do |event| %>
 <ul>
-  <li><%= event.location %> - <%= event.date.strftime '%A %e %B, %Y' %></li>
+  <li><%= link_to event.location, event %> - <%= event.date.strftime '%A %e %B, %Y' %></li>
 </ul>
 <% end %>
-<p><%= link_to("Edit Profile", users_edit_path) %></p>
+</div>
+
+</div>
+<hr>
+<div class="bottom_links">
+<p><%= link_to "Edit Profile", users_edit_path, :class => "button" %></p>
+</div>
