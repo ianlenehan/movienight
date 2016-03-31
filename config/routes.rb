@@ -23,6 +23,7 @@ get '/groups/:id/join' => 'groups#join', :as => 'group_join'
 get '/groups/approve/:id' => 'groups#accept_member'
 get '/groups/reject/:id' => 'groups#reject_member'
 get '/groups/:id/admin/:user' => 'groups#make_admin'
+get '/groups/:id/remove/:user' => 'groups#remove_user'
 
 get '/events/:id/search/' => 'events#search'
 get '/events/:id/delete' => 'events#destroy'

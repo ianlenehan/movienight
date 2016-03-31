@@ -87,6 +87,15 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
+  def remove_user
+    user = User.find params[:user]
+    group = Group.find params[:id]
+    user.group_member = false
+    user.group_id = nil
+    user.save
+    redirect_to group
+  end
+
   def make_admin
     user = User.find params[:user]
     group = Group.find params[:id]

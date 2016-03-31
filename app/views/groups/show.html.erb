@@ -23,6 +23,7 @@
         <%= user.name_last %>
         <% if @current_user.group_admin && !user.group_admin %>
         (<%= link_to 'Make Admin', "/groups/#{@group.id}/admin/#{user.id}" %>)
+         (<%= link_to 'Remove', "/groups/#{@group.id}/remove/#{user.id}" %>)
         <% end %>
       </li>
     </ul>
