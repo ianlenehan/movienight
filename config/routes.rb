@@ -34,6 +34,7 @@ get '/events/rate/:id/:rated' => 'events#add_rating'
 get '/details/:id/:imdbid' => 'events#details'
 get '/details/:id/:imdbid/update_movie' => 'events#update_movie'
 
+get '/readme' => 'pages#readme'
 
 resources :users, :only  => [:new, :create, :index, :update, :show]
 resources :groups, :only => [:new, :create, :index, :update, :show]
