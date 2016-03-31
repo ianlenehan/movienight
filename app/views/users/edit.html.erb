@@ -13,11 +13,14 @@
 <%= f.label :name_last, "Last name" %>
 <%= f.text_field :name_last %>
 </fieldset>
-<!-- <%= f.label :password %>
+<fieldset>
+<%= f.label :password, "New Password" %>
 <%= f.password_field :password %>
-
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %> -->
+</fieldset>
+<fieldset>
+<%= f.label :password_confirmation, "New Password" %>
+<%= f.password_field :password_confirmation %>
+</fieldset>
 <fieldset>
 <%= f.label :image, 'Photo' %>
 <span class="upload"><%= f.file_field :image %></span>

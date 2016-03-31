@@ -21,7 +21,7 @@
     <ul>
       <li><%= user.name_first %>
         <%= user.name_last %>
-        <% if @current_user.group_admin %>
+        <% if @current_user.group_admin && !user.group_admin %>
         (<%= link_to 'Make Admin', "/groups/#{@group.id}/admin/#{user.id}" %>)
         <% end %>
       </li>

@@ -11,15 +11,22 @@ class GroupsController < ApplicationController
   end
 
   def create
-    req = Cloudinary::Uploader.upload( params[:group][:image] )
-    group = Group.create group_params
-    group.image = req["url"]
-    group.save
-    @current_user.group_id = group.id
-    @current_user.group_admin = true
-    @current_user.group_member = true
-    @current_user.save
-    redirect_to group
+    # group_name = params[:name]
+    req = Cloudinary::Uploader.upload( params[:group][:image] ) if params[:group][:image]
+    @group = Group.create group_params
+    if req
+      @group.image = req["url"]
+    end
+    if @group.save
+      @current_user.group_id = @group.id
+      @current_user.group_admin = true
+      @current_user.group_member = true
+      @current_user.save
+      redirect_to @group
+    else
+      render :new
+    end
+
   end
 
 

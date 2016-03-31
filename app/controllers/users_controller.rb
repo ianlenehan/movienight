@@ -31,9 +31,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    req = Cloudinary::Uploader.upload( params[:user][:image] )
+    req = Cloudinary::Uploader.upload( params[:user][:image] ) if params[:user][:image]
     user = @current_user
-    user.image = req["url"] 
+    user.image = req["url"] if req
     user.update user_params
     redirect_to user_path
   end

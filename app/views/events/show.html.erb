@@ -71,17 +71,17 @@
     <%= link_to image_tag(("/assets/unamused.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/unamused" %>
     <%= link_to image_tag(("/assets/poo.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/poo" %>
   </p>
-
+<% end %>
   <form class="event_film" action="/events/<%= @event.id %>/search">
     <label>Add or change film: </label>
     <input type="text" name="title">
     <input type="submit" value="Search" class="button_small">
   </form>
-<% end %>
+
 <hr>
 <div class="bottom_links">
 <%= link_to 'Edit Event', edit_event_path(@event), :class => "button" %>
 <% if @current_user.group_admin %>
-<%= link_to 'Delete Event', @event, :method => :delete, :class => "button delete_event" %>
+<%= link_to 'Delete Event', @event, :method => :delete, :class => "button" %>
 <% end %>
 </div>

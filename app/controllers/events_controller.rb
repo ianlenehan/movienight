@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     event = Event.create event_params
     event.group_id = @current_user.group_id
     event.save
-    redirect_to events_path
+    redirect_to event
   end
 
   def show
@@ -56,8 +56,9 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.find params[:id]
+    # @group = Group.find params[:eventid]
     event.destroy
-    redirect_to events_path
+    redirect_to group_path(event.group_id)
   end
 
   def attending

@@ -25,7 +25,7 @@
   <%= f.password_field :password_confirmation, :required => true %></p>
 
   <p><%= f.label :image, 'Photo' %>
-  <%= f.file_field :image %></p>
+  <span class="upload"><%= f.file_field :image %></p></span>
 
   <p><span class="ruby_smallbutton"><%= f.submit "Sign up" %></span>
 

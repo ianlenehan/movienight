@@ -1,4 +1,17 @@
 
-  <h1 class=>Create new Movie Night Group</h1>
+  <h1 class=>Create New Movie Night Group</h1>
+
+
+
 
     <%= render :partial => 'form' %>
+    <div class="error_div">
+        <% if @group.errors.any? %>
+          <ul>
+            <% @group.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
