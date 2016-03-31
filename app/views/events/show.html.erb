@@ -65,11 +65,11 @@
 </div>
 <% if @event.imdb_id %>
   <p>Rate the choice of film:
-    <%= link_to image_tag(("/assets/heart.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/heart" %>
-    <%= link_to image_tag(("/assets/smiley.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/smiley" %>
-    <%= link_to image_tag(("/assets/neutral.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/neutral" %>
-    <%= link_to image_tag(("/assets/unamused.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/unamused" %>
-    <%= link_to image_tag(("/assets/poo.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/poo" %>
+    <%= link_to image_tag(("heart.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/heart" %>
+    <%= link_to image_tag(("smiley.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/smiley" %>
+    <%= link_to image_tag(("neutral.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/neutral" %>
+    <%= link_to image_tag(("unamused.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/unamused" %>
+    <%= link_to image_tag(("poo.png"), :class => 'emoji hvr-bounce-in'), "/events/rate/#{@event.id}/poo" %>
   </p>
 <% end %>
   <form class="event_film" action="/events/<%= @event.id %>/search">
