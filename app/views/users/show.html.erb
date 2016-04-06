@@ -6,7 +6,7 @@
 <div class="flex_left">
 
 <% if @current_user.group_member == true %>
-<p>Member of: <%= @user.group.name %></p>
+<p>Member of: <%= link_to(@user.group.name, group_path(@user.group)) %></p>
 <% end %>
 <img class="profile_img" src="<%= @user.image %>" alt="<%= @user.name_first %> photo goes here">
 </div>
